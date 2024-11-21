@@ -2,10 +2,12 @@ from fastapi import FastAPI, Request
 import time
 import logging
 
+__version__ = "1.0.0"
+
 
 class CustomFastAPI(FastAPI):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def __init__(self, title: str = "Pokemon-CustomFastAPI", version: str = __version__, *args, **kwargs):
+        super().__init__(title=title, version=version, *args, **kwargs)
         
         # Set up logging
         logging.basicConfig(level=logging.INFO,

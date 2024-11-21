@@ -32,7 +32,7 @@ def update_pokemon(pokemon: Pokemon, id: int = Path(ge=1)) -> Pokemon:
     if id not in get_data():
         raise HTTPException(status_code=404, detail=f"Le pokemon {id} n'existe pas.")
     
-    put_pokemon(id, pokemon.dict())
+    put_pokemon(id, pokemon.model_dump())
     return pokemon
 
 #===========================DELETE============================

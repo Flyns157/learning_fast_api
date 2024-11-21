@@ -3,15 +3,15 @@ from ..data import get_data, get_pokemon
 from ..models.pokemon import Pokemon
 import math
 
-router = APIRouter()
+router = APIRouter(prefix="/pokemons")
 
 
 #===========================GET============================
-@router.get("/pokemons", response_model=list[Pokemon])
+@router.get("", response_model=list[Pokemon])
 def get_all_pokemons1() -> list[Pokemon]:
     return [Pokemon(**get_pokemon(id)) for id in get_data()]
 
-@router.get("/pokemons2/", response_model=list[Pokemon])
+@router.get("/", response_model=list[Pokemon])
 def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
     items = min(items, 20)
     max_page = math.ceil(len(get_data()) / items)
@@ -22,7 +22,7 @@ def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
 
     return [Pokemon(**get_pokemon(id)) for id in sublist]
 
-@router.get("/pokemons/search/", response_model=list[Pokemon] | None)
+@router.get("search/", response_model=list[Pokemon] | None)
 def search_pokemons(
     types: str | None = None,
     evo: str | None = None,

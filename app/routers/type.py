@@ -2,7 +2,7 @@ from typing import List
 from fastapi import APIRouter
 from ..data import get_data
 
-router = APIRouter()
+router = APIRouter(prefix="/pokemons")
 
 #===========================GET============================
 @router.get("/types")
