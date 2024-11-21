@@ -1,0 +1,7 @@
+uv
+uvicorn
+fastapi[all]
+python-dotenv
+dataclasses-json
+dataclasses
+pydantic
