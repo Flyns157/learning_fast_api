@@ -1,0 +1,21 @@
+services:
+  deploy:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    profiles:
+      - default
+
+  debug:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-debug
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/pokemon_api/app
+      - ./requirements.txt:/pokemon_api/requirements.txt
+    profiles:
+      - debug

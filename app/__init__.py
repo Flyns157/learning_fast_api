@@ -30,9 +30,9 @@ class CustomFastAPI(FastAPI):
         self.include_router(pokemon_router, prefix="/pokemon", tags=["Pokemon"])
 
         from .routers.pokemons import router as pokemons_router
-        self.include_router(pokemons_router, prefix="/pokemons", tags=["Pokemon", "Pokemons"])
+        self.include_router(pokemons_router, prefix="/pokemons", tags=["Pokemons"])
 
         from .routers.type import router as type_router
-        self.include_router(type_router, prefix="/type", tags=["Type", "Pokemons"])
+        self.include_router(type_router, prefix="/pokemons", tags=["Type"])
 
 app = CustomFastAPI()

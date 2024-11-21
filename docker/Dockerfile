@@ -1,0 +1,28 @@
+FROM python:3.12.7-slim
+
+# Use bash as the default shell
+SHELL ["/bin/bash", "-c"]
+
+# Set the working directory
+WORKDIR /pokemon_api
+
+# Upgrade pip
+RUN pip install --upgrade pip
+
+# Create and activate virtual environment
+RUN python -m venv .venv
+RUN source /pokemon_api/.venv/bin/activate && pip install --upgrade pip
+
+# Install dependencies
+RUN pip install uv
+COPY requirements.txt .
+RUN source /pokemon_api/.venv/bin/activate && uv pip install -r requirements.txt
+
+# Copy the application code
+COPY ./app ./app
+
+# Expose the port
+EXPOSE 8000
+
+# Command to run the application
+CMD ["bash", "-c", "source /pokemon_api/.venv/bin/activate && fastapi run app --host 0.0.0.0 --port 8000"]

@@ -6,7 +6,7 @@
 
 ![image](https://drive.google.com/uc?export=view&id=1nbcsVC8JANUrOaOO42k_3PDsgiFgM6wu)
 
-# Tools
+## Tools
 
 Réalisé avec
 
@@ -15,3 +15,27 @@ Réalisé avec
 - Uvicorn
 - Pydantic
 - Docker
+
+## Usage
+
+### With Docker :
+
+* To deploy :
+* ```
+  docker compose up -d deploy --build
+  ```
+* To debug :
+* ```
+  docker compose up debug --build 
+  ```
+
+### Without Docker :
+
+* To deploy:
+* ```
+  fastapi run app
+  ```
+* To debug:
+* ```
+  fastapi dev app
+  ```
