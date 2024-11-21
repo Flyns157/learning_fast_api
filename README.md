@@ -1,4 +1,6 @@
-# Fast API : Mise en place d'une API pour Pokemons
+# My first project with FastApi
+
+*Mise en place d'une API pour Pokemons*
 
 ## Screenshots
 
@@ -6,9 +8,10 @@
 
 # Tools
 
-Réalisé avec 
-- Python
+Réalisé avec
+
+- Python (3.12)
 - Fast API
 - Uvicorn
-
-
+- Pydantic
+- Docker
