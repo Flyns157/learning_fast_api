@@ -6,7 +6,7 @@ router = APIRouter(prefix="/pokemons")
 
 #===========================GET============================
 @router.get("/types")
-def get_all_types() -> List[str]:
+async def get_all_types() -> List[str]:
     types = set()
     for pokemon in get_data():
         types.update(pokemon["types"])

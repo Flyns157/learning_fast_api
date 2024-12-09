@@ -8,11 +8,11 @@ router = APIRouter(prefix="/pokemons")
 
 #===========================GET============================
 @router.get("", response_model=list[Pokemon])
-def get_all_pokemons1() -> list[Pokemon]:
+async def get_all_pokemons1() -> list[Pokemon]:
     return [Pokemon(**get_pokemon(id)) for id in get_data()]
 
 @router.get("/", response_model=list[Pokemon])
-def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
+async def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
     items = min(items, 20)
     max_page = math.ceil(len(get_data()) / items)
     current_page = min(page, max_page)
@@ -23,7 +23,7 @@ def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
     return [Pokemon(**get_pokemon(id)) for id in sublist]
 
 @router.get("search/", response_model=list[Pokemon] | None)
-def search_pokemons(
+async def search_pokemons(
     types: str | None = None,
     evo: str | None = None,
     totalgt: int | None = None,
