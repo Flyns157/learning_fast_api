@@ -7,9 +7,15 @@ router = APIRouter(prefix="/pokemons")
 
 
 #===========================GET============================
+@router.get("/total")
+async def get_total_pokemons() -> dict:
+    return {"total": len(get_data())}
+
+
 @router.get("", response_model=list[Pokemon])
 async def get_all_pokemons1() -> list[Pokemon]:
     return [Pokemon(**get_pokemon(id)) for id in get_data()]
+
 
 @router.get("/", response_model=list[Pokemon])
 async def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
@@ -22,6 +28,7 @@ async def get_all_pokemons(page: int = 1, items: int = 10) -> list[Pokemon]:
 
     return [Pokemon(**get_pokemon(id)) for id in sublist]
 
+
 @router.get("search/", response_model=list[Pokemon] | None)
 async def search_pokemons(
     types: str | None = None,
@@ -31,7 +38,7 @@ async def search_pokemons(
     sortby: str | None = None,
     order: str | None = None,
 ) -> list[Pokemon] | None:
-    
+
     filtered_list = []
 
     #On filtre les types

@@ -1,7 +1,10 @@
 uv
 uvicorn
-fastapi[all]
+fastapi
 python-dotenv
 dataclasses-json
 dataclasses
 pydantic
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]

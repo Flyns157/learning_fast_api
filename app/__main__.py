@@ -1,13 +1,15 @@
-import sys
 from . import CustomFastAPI
 import argparse
 import uvicorn
+import sys
+
 
 # =================================== Main ===================================
 def main(debug=False, host='127.0.0.1', port=8080):
     app = CustomFastAPI(debug=debug, host=host, port=port)
     # Run the FastAPI app with Uvicorn
     uvicorn.run(app, host=host, port=port, log_level="debug" if debug else "info")
+
 
 # =================================== Run ===================================
 if __name__ == '__main__':

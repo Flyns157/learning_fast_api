@@ -6,10 +6,6 @@ router = APIRouter(prefix="/pokemon")
 
 
 #===========================GET============================
-@router.get("/total")
-async def get_total_pokemons() -> dict:
-    return {"total": len(get_data())}
-
 @router.get("/{id}", response_model=Pokemon)
 async def get_pokemon_by_id(id: int = Path(ge=1)) -> Pokemon:
     if id not in get_data():
@@ -17,14 +13,16 @@ async def get_pokemon_by_id(id: int = Path(ge=1)) -> Pokemon:
     
     return Pokemon(**get_pokemon(id))
 
+
 #===========================POST============================
 @router.post("/", response_model=Pokemon)
 async def create_pokemon(pokemon: Pokemon) -> Pokemon:
-    if pokemon.id in get_pokemon():
+    if get_pokemon(pokemon.id):
         raise HTTPException(status_code=404, detail=f"Le pokemon {pokemon.id} existe déjà !")
     
-    put_pokemon(pokemon.id, pokemon.dict())
+    put_pokemon(pokemon.id, pokemon.model_dump())
     return pokemon
+
 
 #===========================PUT============================
 @router.put("/{id}", response_model=Pokemon)
@@ -34,6 +32,7 @@ async def update_pokemon(pokemon: Pokemon, id: int = Path(ge=1)) -> Pokemon:
     
     put_pokemon(id, pokemon.model_dump())
     return pokemon
+
 
 #===========================DELETE============================
 @router.delete("/{id}", response_model=Pokemon)

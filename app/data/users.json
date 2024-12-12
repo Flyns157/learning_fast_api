@@ -1,0 +1,16 @@
+{
+    "admin": {
+        "username": "admin",
+        "full_name": "Admin User",
+        "email": "admin@gmail.com",
+        "hashed_password": "$2b$12$HxWHkvMuL7WrZad6lcCfluNFj1/Zp63lvP5aUrKlSTYtoFzPXHOtu",
+        "disabled": false
+    },
+    "tim": {
+        "username": "tim",
+        "full_name": "Tim Ruscica",
+        "email": "tim@gmail.com",
+        "hashed_password": "$2b$12$HxWHkvMuL7WrZad6lcCfluNFj1/Zp63lvP5aUrKlSTYtoFzPXHOtu",
+        "disabled": false
+    }
+}

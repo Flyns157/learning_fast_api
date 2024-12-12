@@ -1,9 +1,17 @@
 import json
 import os
 
-from app.models.pokemon import Pokemon
+from ..models import Pokemon, User
 
-def get_data() -> dict:
+
+# ====== User data ===== #
+def get_users() -> dict[User]:
+    with open(os.path.join(os.path.dirname(__file__), "users.json"), "r") as f:
+        return json.load(f)
+
+
+# ====== Pokemon data ===== #
+def get_data() -> dict[Pokemon]:
     #===== Structure de données : Dictionnaire indexé par pokemon id =====#
     with open(os.path.join(os.path.dirname(__file__), "pokemons.json"), "r") as f:
         return json.load(f)
