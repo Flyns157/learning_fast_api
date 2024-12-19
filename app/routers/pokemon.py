@@ -17,7 +17,7 @@ async def get_pokemon_by_id(id: int = Path(ge=1)) -> Pokemon:
 #===========================POST============================
 @router.post("/", response_model=Pokemon)
 async def create_pokemon(pokemon: Pokemon) -> Pokemon:
-    if add_pokemon(pokemon.id, pokemon):
+    if add_pokemon(pokemon):
         raise HTTPException(status_code=404, detail=f"Le pokemon {pokemon.id} existe déjà !")
     return pokemon
 
@@ -25,7 +25,7 @@ async def create_pokemon(pokemon: Pokemon) -> Pokemon:
 #===========================PUT============================
 @router.put("/{id}", response_model=Pokemon)
 async def update_pokemon(pokemon: Pokemon, id: int = Path(ge=1)) -> Pokemon:
-    if put_pokemon(id, pokemon):
+    if not put_pokemon(pokemon):
         raise HTTPException(status_code=404, detail=f"Le pokemon {id} n'existe pas.")
     return pokemon
 

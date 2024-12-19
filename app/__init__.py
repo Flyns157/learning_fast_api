@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 import logging
 import time
 
-__version__ = "1.0.0"
+__version__ = "1.0.2"
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
