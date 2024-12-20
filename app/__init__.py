@@ -10,6 +10,15 @@ __version__ = "1.0.2"
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+# Set up logging
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    handlers=[
+                        logging.FileHandler("app.log"),  # Log to a file
+                        logging.StreamHandler()          # Also log to console
+                    ])
+main_logger = logging.getLogger(__name__)
+
 
 class CustomFastAPI(FastAPI):
     def __init__(self, title: str = "Pokemon-CustomFastAPI", version: str = __version__, *args, **kwargs):
@@ -17,14 +26,7 @@ class CustomFastAPI(FastAPI):
 
 
         def setup_logging(self):
-            # Set up logging
-            logging.basicConfig(level=logging.INFO,
-                                format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-                                handlers=[
-                                    logging.FileHandler("app.log"),  # Log to a file
-                                    logging.StreamHandler()          # Also log to console
-                                ])
-            self.logger = logging.getLogger(__name__)
+            self.logger = main_logger
 
 
         def add_middleware(self):
